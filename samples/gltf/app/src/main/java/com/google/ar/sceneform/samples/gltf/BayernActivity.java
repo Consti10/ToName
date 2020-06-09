@@ -54,7 +54,6 @@ public class BayernActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ux);
         arFragment = (MarkerBasedARFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
-
         loadModel(0,R.raw.bayern_low);
         loadModel(1,R.raw.autobahn_textures_unwrapped);
         loadModel(2,R.raw.kraftwerke_textures_transforms_reset);
