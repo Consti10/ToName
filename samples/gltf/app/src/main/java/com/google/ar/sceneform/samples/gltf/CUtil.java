@@ -3,7 +3,7 @@ package com.google.ar.sceneform.samples.gltf;
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;
 import android.media.MediaPlayer;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.ar.core.AugmentedImageDatabase;
 import com.google.ar.core.Session;
@@ -14,7 +14,6 @@ import com.google.ar.sceneform.collision.Box;
 import com.google.ar.sceneform.collision.Sphere;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.MaterialFactory;
-import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.Renderable;
 import com.google.ar.sceneform.rendering.ShapeFactory;
 
