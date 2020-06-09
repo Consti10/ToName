@@ -1,0 +1,4 @@
+m_1|C:\Users\geier\Desktop\LRZ\ToName\Marker\marker_4.jpg|0.03
+m_2|C:\Users\geier\Desktop\LRZ\ToName\Marker\marker_4.jpg|0.03
+m_3|C:\Users\geier\Desktop\LRZ\ToName\Marker\marker_4.jpg|0.03
+m_4|C:\Users\geier\Desktop\LRZ\ToName\Marker\marker_4.jpg|0.03

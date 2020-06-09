@@ -1,0 +1,3 @@
+arcoreimg.exe build-db --input_image_list_path=C:\Users\geier\Desktop\LRZ\ToName\Marker\image_list_file.txt --output_db_path=C:\Users\geier\Desktop\LRZ\ToName\Marker\out\database.imgdb
+
+
