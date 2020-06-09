@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: bazel
+Target-Label: //third_party/arcore/java/com/google/ar/sceneform/schemas:
+ sceneform_runtime_schemas
+
