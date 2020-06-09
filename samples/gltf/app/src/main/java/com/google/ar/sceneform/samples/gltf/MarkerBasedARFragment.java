@@ -11,9 +11,10 @@ public class MarkerBasedARFragment extends ArFragment {
     @Override
     protected Config getSessionConfiguration(Session session) {
         Config config = new Config(session);
-        //config.setAugmentedImageDatabase(CUtil.createAugmentedImageDatabase(requireActivity(),session,MODEL_DB));
+        config.setAugmentedImageDatabase(CUtil.createAugmentedImageDatabase(requireActivity(),session,MODEL_DB));
         //Disable plane finding (only search for augmeneted images)
         //config.setPlaneFindingMode(Config.PlaneFindingMode.HORIZONTAL_AND_VERTICAL);
+        config.setPlaneFindingMode(Config.PlaneFindingMode.DISABLED);
         //from maze example
         //Default focus mode seems to be 'fixed'
         //but auto does not really achieve better results

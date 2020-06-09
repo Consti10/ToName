@@ -14,6 +14,7 @@ import com.google.ar.sceneform.collision.Box;
 import com.google.ar.sceneform.collision.Sphere;
 import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.MaterialFactory;
+import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.Renderable;
 import com.google.ar.sceneform.rendering.ShapeFactory;
 
@@ -144,4 +145,14 @@ public class CUtil {
         }
     }*/
 
+    public static final String BoxToString(final com.google.android.filament.Box box){
+        return "Box xyz "+box.getHalfExtent()[0]+" "+box.getHalfExtent()[1]+" "+box.getHalfExtent()[2];
+    }
+
+    public static boolean done(final ModelRenderable[] renderables){
+        for(ModelRenderable r: renderables){
+            if(r==null)return false;
+        }
+        return true;
+    }
 }
