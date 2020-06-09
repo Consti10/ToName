@@ -38,7 +38,7 @@
             android:value="required" />
 
         <activity
-            android:name="com.google.ar.sceneform.samples.gltf.TestActivity"
+            android:name="com.google.ar.sceneform.samples.gltf.BayernActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"
             android:label="@string/app_name"

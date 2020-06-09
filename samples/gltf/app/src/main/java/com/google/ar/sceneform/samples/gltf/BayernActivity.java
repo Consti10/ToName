@@ -1,7 +1,5 @@
 package com.google.ar.sceneform.samples.gltf;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
@@ -9,44 +7,27 @@ import android.os.Build;
 import android.os.Build.VERSION_CODES;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.ArraySet;
+
 import android.util.Log;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.google.android.filament.Box;
-import com.google.android.filament.gltfio.Animator;
-import com.google.android.filament.gltfio.FilamentAsset;
-import com.google.ar.core.Anchor;
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.core.Frame;
-import com.google.ar.core.HitResult;
-import com.google.ar.core.Plane;
-import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.FrameTime;
-import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.SceneView;
-import com.google.ar.sceneform.rendering.Color;
-import com.google.ar.sceneform.rendering.Material;
 import com.google.ar.sceneform.rendering.ModelRenderable;
-import com.google.ar.sceneform.rendering.Renderable;
-import com.google.ar.sceneform.ux.TransformableNode;
-import java.lang.ref.WeakReference;
-import java.util.Arrays;
+
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 /**
  * This is an example activity that uses the Sceneform UX package to make common AR tasks easier.
  */
-public class TestActivity extends AppCompatActivity {
-    private static final String TAG = TestActivity.class.getSimpleName();
+public class BayernActivity extends AppCompatActivity {
+    private static final String TAG = BayernActivity.class.getSimpleName();
     private static final double MIN_OPENGL_VERSION = 3.0;
 
     private MarkerBasedARFragment arFragment;
@@ -54,7 +35,9 @@ public class TestActivity extends AppCompatActivity {
     private static final int N_RENDERABLES=3;
     private final ModelRenderable[] renderables=new ModelRenderable[N_RENDERABLES];
 
-    private final Map<AugmentedImage, BayernARImageNode> augmentedImageMap = new HashMap<>();
+    //private final Map<AugmentedImage, BayernARImageNode> augmentedImageMap = new HashMap<>();
+    private BayernARImageNode augmentedImageNode=null;
+    private int mode=0;
 
 
     @Override
@@ -76,30 +59,16 @@ public class TestActivity extends AppCompatActivity {
         loadModel(1,R.raw.autobahn_textures_unwrapped);
         loadModel(2,R.raw.kraftwerke_textures_transforms_reset);
 
-        /*arFragment.setOnTapArPlaneListener(
-                (HitResult hitResult, Plane plane, MotionEvent motionEvent) -> {
-                    if (renderable == null) {
-                        return;
-                    }
-
-                    // Create the Anchor.
-                    Anchor anchor = hitResult.createAnchor();
-                    AnchorNode anchorNode = new AnchorNode(anchor);
-                    anchorNode.setParent(arFragment.getArSceneView().getScene());
-
-                    // Create the transformable model and add it to the anchor.
-                    TransformableNode node = new TransformableNode(arFragment.getTransformationSystem());
-                    node.setParent(anchorNode);
-                    node.setRenderable(renderable);
-                    node.select();
-                    node.getScaleController().setMinScale(0.01f);
-                    node.getScaleController().setMaxScale(10);
-
-                    FilamentAsset filamentAsset = node.getRenderableInstance().getFilamentAsset();
-                    final Box box=filamentAsset.getBoundingBox();
-                    System.out.println("SizeX "+CUtil.BoxToString(box));
-                });*/
         arFragment.getArSceneView().getScene().addOnUpdateListener(this::onUpdate);
+        arFragment.getArSceneView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synchronized (BayernActivity.this){
+                    mode++;
+                    mode=mode % 3;
+                }
+            }
+        });
     }
 
     private void onUpdate(FrameTime frameTime) {
@@ -121,23 +90,30 @@ public class TestActivity extends AppCompatActivity {
                     break;
                 case TRACKING:
                     //add if new image
-                    if(!augmentedImageMap.containsKey(image)){
+                    if(augmentedImageNode==null){
                         System.out.println("New AR image:"+image.getName());
                         final BayernARImageNode mArImageNode=new BayernARImageNode(image,renderables[0],renderables[1],renderables[2]);
                         arFragment.getArSceneView().getScene().addChild(mArImageNode);
-                        augmentedImageMap.put(image,mArImageNode);
+                        augmentedImageNode=mArImageNode;
                     }
                     break;
                 case STOPPED:
                     //remove if still contained
-                    final BayernARImageNode tmp=augmentedImageMap.get(image);
+                    final BayernARImageNode tmp=augmentedImageNode;
                     if(tmp!=null){
                         System.out.println("Removed AR image:"+image.getName());
                         arFragment.getArSceneView().getScene().removeChild(tmp);
-                        augmentedImageMap.remove(image);
+                        augmentedImageNode=null;
                     }
                     break;
             }
+        }
+        if(augmentedImageNode!=null){
+            synchronized (BayernActivity.this){
+                augmentedImageNode.setMode(mode);
+            }
+            arFragment.getPlaneDiscoveryController().hide();
+            arFragment.getPlaneDiscoveryController().setInstructionView(null);
         }
     }
 

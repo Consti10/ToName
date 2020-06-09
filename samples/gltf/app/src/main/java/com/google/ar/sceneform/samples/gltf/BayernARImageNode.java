@@ -41,4 +41,19 @@ public class BayernARImageNode extends AnchorNode {
         modelNode3.setLocalPosition(new Vector3(0,0,0));
         modelNode3.setLocalScale(new Vector3(scale,scale,scale));
     }
+
+    public void setMode(final int mode){
+        if(mode==0){
+            modelNode2.setEnabled(true);
+            modelNode3.setEnabled(false);
+        }else if(mode==1){
+            modelNode2.setEnabled(false);
+            modelNode3.setEnabled(true);
+        }else if(mode==2){
+            modelNode2.setEnabled(true);
+            modelNode3.setEnabled(true);
+        }else{
+            System.out.println("Unknown mode");
+        }
+    }
 }
