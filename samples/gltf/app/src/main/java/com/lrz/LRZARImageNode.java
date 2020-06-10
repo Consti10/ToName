@@ -6,7 +6,7 @@ import com.google.ar.sceneform.Node;
 import com.google.ar.sceneform.rendering.Renderable;
 
 public class LRZARImageNode extends AnchorNode {
-    private final Renderable renderable;
+    private Renderable renderable;
     private final AugmentedImage image;
     private final Node modelNode1=new Node();
 
@@ -18,6 +18,11 @@ public class LRZARImageNode extends AnchorNode {
         setAnchor(image.createAnchor(image.getCenterPose()));
 
         modelNode1.setParent(this);
+        modelNode1.setRenderable(renderable);
+    }
+
+    public void setRenderable(final Renderable renderable){
+        this.renderable=renderable;
         modelNode1.setRenderable(renderable);
     }
 }

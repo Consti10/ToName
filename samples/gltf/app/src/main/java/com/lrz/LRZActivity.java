@@ -31,6 +31,7 @@ public class LRZActivity extends AppCompatActivity {
     private final ModelRenderable[] renderables=new ModelRenderable[N_RENDERABLES];
 
     private final Map<AugmentedImage,LRZARImageNode> augmentedImageMap = new HashMap<>();
+    private int mode=0;
 
     @Override
     @SuppressWarnings({"AndroidApiChecker", "FutureReturnValueIgnored"})
@@ -48,6 +49,15 @@ public class LRZActivity extends AppCompatActivity {
         loadModel(2,R.raw.avocado);
 
         arFragment.getArSceneView().getScene().addOnUpdateListener(this::onUpdate);
+        arFragment.getArSceneView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                synchronized (LRZActivity.this){
+                    mode++;
+                    mode=mode % 3;
+                }
+            }
+        });
     }
 
     private void onUpdate(FrameTime frameTime) {
@@ -88,6 +98,10 @@ public class LRZActivity extends AppCompatActivity {
         if(!augmentedImageMap.isEmpty()){
             arFragment.getPlaneDiscoveryController().hide();
             arFragment.getPlaneDiscoveryController().setInstructionView(null);
+            synchronized (LRZActivity.this){
+                final LRZARImageNode node=augmentedImageMap.get(augmentedImageMap.keySet().iterator().next());
+                node.setRenderable(renderables[mode]);
+            }
         }
     }
 
