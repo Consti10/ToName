@@ -43,9 +43,9 @@ public class LRZActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ux);
         arFragment = (MarkerBasedARFragment) getSupportFragmentManager().findFragmentById(R.id.ux_fragment);
 
-        loadModel(0,R.raw.bayern_low);
-        loadModel(1,R.raw.autobahn_textures_unwrapped);
-        loadModel(2,R.raw.kraftwerke_textures_transforms_reset);
+        loadModel(0,R.raw.chamaeleon_low);
+        loadModel(1,R.raw.bunge_1200_140mio);
+        loadModel(2,R.raw.avocado);
 
         arFragment.getArSceneView().getScene().addOnUpdateListener(this::onUpdate);
     }
@@ -69,7 +69,7 @@ public class LRZActivity extends AppCompatActivity {
                 case TRACKING:
                     //add if new image
                     if(!augmentedImageMap.containsKey(image)){
-                        final LRZARImageNode node=new LRZARImageNode(image,renderables[0]);
+                        final LRZARImageNode node=new LRZARImageNode(image,renderables[1]);
                         arFragment.getArSceneView().getScene().addChild(node);
                         augmentedImageMap.put(image,node);
                     }
