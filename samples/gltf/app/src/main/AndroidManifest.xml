@@ -28,27 +28,29 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="false"
         tools:ignore="GoogleAppIndexingWarning">
-        <!--
-        Indicates that this app requires Google Play Services for AR ("AR Required") and causes
-            the Google Play Store to download and intall Google Play Services for AR along with
-            the app. For an "AR Optional" app, specify "optional" instead of "required".
-       -->
-        <meta-data
-            android:name="com.google.ar.core"
-            android:value="required" />
-
-        <activity
-            android:name="com.google.ar.sceneform.samples.gltf.com.lrz.BayernActivity"
-            android:configChanges="orientation|screenSize"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:screenOrientation="locked"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name="com.lrz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+    </activity>
+        <!--
+        Indicates that this app requires Google Play Services for AR ("AR Required") and causes
+            the Google Play Store to download and intall Google Play Services for AR along with
+            the app. For an "AR Optional" app, specify "optional" instead of "required".
+        -->
+        <meta-data
+            android:name="com.google.ar.core"
+            android:value="required" />
+
+        <activity
+            android:name="com.lrz.BayernActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:screenOrientation="locked"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
     </application>
 
