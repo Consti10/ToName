@@ -1,4 +1,4 @@
-package com.google.ar.sceneform.samples.gltf;
+package com.lrz;
 
 import android.content.Context;
 import android.content.res.AssetFileDescriptor;

@@ -1,4 +1,4 @@
-package com.google.ar.sceneform.samples.gltf;
+package com.lrz;
 
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -17,10 +17,9 @@ import com.google.ar.core.Frame;
 import com.google.ar.sceneform.FrameTime;
 import com.google.ar.sceneform.SceneView;
 import com.google.ar.sceneform.rendering.ModelRenderable;
+import com.google.ar.sceneform.samples.gltf.R;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 /**

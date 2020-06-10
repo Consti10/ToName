@@ -1,4 +1,4 @@
-package com.google.ar.sceneform.samples.gltf;
+package com.lrz;
 
 import com.google.ar.core.AugmentedImage;
 import com.google.ar.sceneform.AnchorNode;

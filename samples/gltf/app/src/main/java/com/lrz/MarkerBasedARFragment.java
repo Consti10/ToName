@@ -1,8 +1,9 @@
-package com.google.ar.sceneform.samples.gltf;
+package com.lrz;
 
 import com.google.ar.core.Config;
 import com.google.ar.core.Session;
 import com.google.ar.sceneform.ux.ArFragment;
+import com.lrz.CUtil;
 
 public class MarkerBasedARFragment extends ArFragment {
     //Loads a specific Image database before configuring the AR Fragment
