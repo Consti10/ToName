@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         binding.B2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(MainActivity.this, BayernActivity.class); //MarkerBasedActivity
+                Intent intent=new Intent(MainActivity.this, LRZActivity.class); //MarkerBasedActivity
                 startActivity(intent);
             }
         });
